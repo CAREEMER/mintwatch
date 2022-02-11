@@ -1,0 +1,19 @@
+[BASE]
+services=["google", "yandex", "always_fail"]
+token="PLACE_BOT_TOKEN_HERE"
+chat_id="PLACE_CHAT_ID_HERE"
+
+[yandex]
+url="https://yandex.ru"
+panic=5
+interval=3
+
+[google]
+url="https://google.com"
+panic=2
+interval=5
+
+[always_fail]
+url="https://foo.bar"
+panic=2
+interval=5

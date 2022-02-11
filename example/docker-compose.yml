@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+
+  bot:
+    build: bot

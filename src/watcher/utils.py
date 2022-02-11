@@ -1,8 +1,8 @@
 from time import time
+from typing import Tuple
 
 import aiohttp
 from pydantic import AnyHttpUrl
-from typing import Tuple
 
 
 def timeit(f):

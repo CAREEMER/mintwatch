@@ -1,5 +1,4 @@
 [BASE]
-services=["google", "yandex", "always_fail"]
 token="PLACE_BOT_TOKEN_HERE"
 chat_id="PLACE_CHAT_ID_HERE"
 

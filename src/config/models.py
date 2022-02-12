@@ -18,7 +18,6 @@ class Service(pydantic.BaseModel):
 
 
 class Config(pydantic.BaseModel):
-    services: List[str]
     token: str
     service_configs: List[Service] = []
     bot: Optional[Bot]

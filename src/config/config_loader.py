@@ -1,23 +1,7 @@
-from typing import List, Optional
-
-import pydantic
 import toml
 
+from config.models import Config, Service
 from telegram import Bot
-
-
-class Service(pydantic.BaseModel):
-    url: pydantic.AnyHttpUrl
-    panic: int
-    interval: int
-
-
-class Config(pydantic.BaseModel):
-    services: List[str]
-    token: str
-    service_configs: List[Service] = []
-    bot: Optional[Bot]
-    chat_id: str
 
 
 def load_config():

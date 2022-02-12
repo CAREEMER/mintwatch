@@ -7,8 +7,8 @@ chat_id="PLACE_CHAT_ID_HERE"
 url="https://yandex.ru"
 panic=5
 interval=3
-success_log="{status_code} - {body} - {time} Suffering from success"
-failure_log="{status_code} - {response_body} - {time} dotnet ez auto deployer"
+success_log="{url} - {status_code} - {time}s Success"
+failure_log="{url} - {status_code} - {time}s Fail"
 
 [google]
 url="https://google.com"
@@ -19,3 +19,5 @@ interval=5
 url="https://foo.bar"
 panic=2
 interval=5
+after_panic_delay=10
+after_exception_delay=100

@@ -1,17 +1,16 @@
-from typing import Optional
-
 import pydantic
 
 
 class Response(pydantic.BaseModel):
-    ok: Optional[bool]
-    status_code: Optional[int]
-    body: Optional[str]
-    time: Optional[float]
+    ok: bool
+    status_code: int
+    body: str
+    time: float
 
-    async def parse_response(self, response):
-        self.ok = response.ok
-        self.status_code = response.status_code
-        self.body = await response.text("UTF-8")
+    @pydantic.validator("time")
+    def trim_time(cls, v):
+        trim_digits_to = 3
 
-        return self
+        str_v = str(v)
+
+        return float(str_v[: str_v.find(".") + trim_digits_to + 1])

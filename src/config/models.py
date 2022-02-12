@@ -1,15 +1,17 @@
+from datetime import datetime
 from typing import List, Optional
 
 import pydantic
-import toml
 
 from telegram import Bot
 
 
 class Service(pydantic.BaseModel):
     url: pydantic.AnyHttpUrl
-    panic: int
-    interval: int
+    panic: int = 3
+    interval: int = 5
+    after_panic_delay: int = 10
+    after_exception_delay: int = 100
 
     success_log: str = "Base log template - success {response_code} - {body} - {time}"
     failure_log: str = "Base log template - success {response_code} - {body} - {time}"
@@ -21,14 +23,11 @@ class Config(pydantic.BaseModel):
     service_configs: List[Service] = []
     bot: Optional[Bot]
     chat_id: str
+    datetime_fmt: str = "%H:%M:%S %d-%m-%Y"
 
-
-def load_config():
-    toml_obj = toml.load("./config.toml")
-    config = Config(**toml_obj.get("BASE"))
-    config.bot = Bot(token=config.token, chat_id=config.chat_id)
-
-    for service in config.services:
-        config.service_configs.append(Service(**toml_obj.get(service)))
-
-    return config
+    @pydantic.validator("datetime_fmt")
+    def validate_fmt(cls, v):
+        try:
+            datetime.now().strftime(v)
+        except:  # NOQA 722
+            raise ValueError("Not valid datetime format! Check the config")

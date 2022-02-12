@@ -11,6 +11,9 @@ class Service(pydantic.BaseModel):
     panic: int
     interval: int
 
+    success_log: str = "Base log template - success {response_code} - {body} - {time}"
+    failure_log: str = "Base log template - success {response_code} - {body} - {time}"
+
 
 class Config(pydantic.BaseModel):
     services: List[str]

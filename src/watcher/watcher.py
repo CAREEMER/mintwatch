@@ -3,6 +3,7 @@ import asyncio
 from loguru import logger
 
 from config_loader import Service
+from log_formatter import LogFormatter
 from telegram import Bot
 from watcher.utils import try_ping
 
@@ -12,18 +13,19 @@ async def watcher_task(service_config: Service, bot: Bot):
 
     while 1:
 
-        response_ok, status_code, time = await try_ping(service_config.url)
+        response = await try_ping(service_config.url)
+        log = await LogFormatter.format_log(response, service_config)
 
-        if not response_ok:
+        if not response.ok:
             fails += 1
         else:
-            logger.info("[{}] SUCCESS: {}, TIME - {}".format(status_code, service_config.url, time))
+            logger.info(log)
             fails = 0
 
         if fails == service_config.panic:
-            log = "[{}] ONE WATCH FAILED: {}, TIME - {}".format(status_code, service_config.url, time)
             logger.error(log)
             await bot.send_log(log)
             fails = 0
 
-        await asyncio.sleep(service_config.interval - time)
+        waiting_time = service_config.interval - response.time
+        await asyncio.sleep(waiting_time if waiting_time > 0 else 0)

@@ -7,6 +7,8 @@ chat_id="PLACE_CHAT_ID_HERE"
 url="https://yandex.ru"
 panic=5
 interval=3
+success_log="{status_code} - {body} - {time} Suffering from success"
+failure_log="{status_code} - {response_body} - {time} dotnet ez auto deployer"
 
 [google]
 url="https://google.com"

@@ -1,27 +1,29 @@
 from time import time
-from typing import Tuple
 
 import aiohttp
 from pydantic import AnyHttpUrl
+
+from log_formatter import Response
 
 
 def timeit(f):
     async def wrapper(*args, **kwargs):
         time_1 = time()
 
-        result = await f(*args, **kwargs)
+        response = await f(*args, **kwargs)
+        response.time = time() - time_1
 
-        return *result, time() - time_1
+        return response
 
     return wrapper
 
 
 @timeit
-async def try_ping(url: AnyHttpUrl) -> Tuple[bool, int]:
+async def try_ping(url: AnyHttpUrl) -> Response:
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
-                return response.ok, response.status
+                return await Response().parse_response(response)
 
-    except:
-        return False, 0
+    except:  # NOQA: 722
+        return Response()

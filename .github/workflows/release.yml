@@ -1,4 +1,4 @@
-name: Publish latest Docker image
+name: Publish release Docker image
 
 on:
   push:

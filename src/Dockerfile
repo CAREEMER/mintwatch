@@ -10,7 +10,7 @@ RUN apt update \
   && pip install --upgrade pip \
   && pip install poetry==1.1.6
 
-COPY src/pyproject.toml src/poetry.lock ./
+COPY pyproject.toml poetry.lock ./
 
 RUN poetry config virtualenvs.create false
 

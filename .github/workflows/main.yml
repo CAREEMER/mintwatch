@@ -1,11 +1,9 @@
-name: Publish DockerHub image
+name: Publish latest Docker image
 
 on:
   push:
     branches:
       - 'main'
-    tags:
-      - 'v*'
   pull_request:
     branches:
       - 'main'
@@ -34,8 +32,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./src/Dockerfile
+          context: /src/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

@@ -6,7 +6,7 @@ on:
       - 'release*'
   pull_request:
     branches:
-      - 'main'
+      - 'release*'
 
 jobs:
   build-container:

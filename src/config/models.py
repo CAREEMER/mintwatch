@@ -8,13 +8,14 @@ from telegram import Bot
 
 
 class Service(BaseModel):
+    name: str
     url: AnyHttpUrl
     panic: PositiveInt = 3
     interval: PositiveInt = 5
     after_panic_delay: PositiveInt = 10
 
-    success_log: str = "{url} - success {response_code} - {body} - {time}"
-    failure_log: str = "{url} - fail {response_code} - {body} - {time}"
+    success_log: str = "{name} - SUCCESS\n{url} - {status_code} - {body} - {time}s"
+    failure_log: str = "{name} - FAILURE\n{url} - {status_code} - {body} - {time}s"
 
     @validator("url")
     def is_accessible_url(cls, v):
@@ -34,6 +35,7 @@ class Config(BaseModel):
     bot: Optional[Bot]
     chat_id: str
     datetime_fmt: str = "%H:%M:%S %d-%m-%Y"
+    bot_success_logs: bool = False
 
     @validator("datetime_fmt")
     def validate_fmt(cls, v):

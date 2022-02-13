@@ -14,6 +14,8 @@ def load_config():
 
     services = [service for service in toml_obj if service != base_config_name]
     for service in services:
-        config.service_configs.append(Service(**toml_obj.get(service)))
+        service_toml_obj = toml_obj.get(service)
+        service_toml_obj.update({"name": service})
+        config.service_configs.append(Service(**service_toml_obj))
 
     return config

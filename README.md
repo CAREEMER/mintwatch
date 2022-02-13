@@ -13,17 +13,26 @@ python main.py
 ```
 
 ## Running in Docker:
-TODO
+```shell
+cd src
+vim config.toml
+docker build . -t mintwatch
+docker run mintwatch
+```
 
 ## Running in docker-compose:
-See /example directory
+- See /example directory
+- Include bot build in services, be sure to write proper config (e.g. write url as the name of the service in docker-compose)
 
 ## Base config params:
 ```shell
 token - telegram bot token
 
-chat_id - id of the chat to populate logs (bot needs to be in the chat if that is the group or you need to
-message him first if you want it to populate logs in private messages)
+chat_id - id of the chat to populate logs
+(bot needs to be in the chat if that is the group or you need tomessage him first if you want it to populate logs in private messages)
+
+bot_success_logs - 0 or 1 - determines if success logs being populated in the telegram
+(be aware of amount of useless logs in telegram chat)
 ```
 
 ## Service config params:
@@ -36,14 +45,15 @@ interval - interval between the pings, in seconds
 
 after_panic_delay - delay after populating panic log, in seconds
 
-success_log - template of the successful ping log, you can read about possible log kwargs in section below, leave blank to not
-populate success logs
+success_log - template of the successful ping log, you can read about possible log kwargs in section below
 
 failure_log - same thing, but for failed pings
 ```
 
 ### Possible log kwargs:
 ```shell
+name - name of the service
+
 url - url of the service
 
 ok - if response is ok

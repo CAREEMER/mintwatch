@@ -35,6 +35,8 @@ class WatcherTask:
             self._fails = 0
             log = await LogFormatter.format_log(response, self.service_config)
             logger.info(log)
+            if self.config.bot_success_logs:
+                await self.bot.send_log(log)
 
         else:
             self._fails += 1

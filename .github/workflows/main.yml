@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: itsmetommy/hello-github-actions
+          images: m2n2/mintwatch
           tags: |
               type=raw,value=latest
 

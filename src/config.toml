@@ -15,8 +15,7 @@ panic=2
 interval=5
 
 [always_fail]
-url="https://foo.bar"
+url="http://foo.com"
 panic=2
 interval=5
 after_panic_delay=10
-after_exception_delay=100

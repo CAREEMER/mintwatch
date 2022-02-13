@@ -1,14 +1,15 @@
 import asyncio
 
 from config.config_loader import Config, load_config
-from watcher import watcher_task
+from watcher import WatcherTask
 
 
 async def run_tasks(config: Config):
     tasks = []
 
     for service_config in config.service_configs:
-        tasks.append(watcher_task(service_config, config, config.bot))
+        task = WatcherTask(service_config, config, config.bot)
+        tasks.append(task.run())
 
     await asyncio.gather(*tasks)
 

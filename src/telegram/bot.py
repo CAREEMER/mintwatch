@@ -1,14 +1,14 @@
 import aiohttp
-import pydantic
 import requests
 from loguru import logger
+from pydantic import BaseModel, validator
 
 
-class Bot(pydantic.BaseModel):
+class Bot(BaseModel):
     token: str
     chat_id: str
 
-    @pydantic.validator("token")
+    @validator("token")
     def existing_bot(cls, v):
         response = requests.get(f"https://api.telegram.org/bot{v}/getMe")
         if not response.status_code == 200:

@@ -1,6 +1,6 @@
 import re
 
-from config.config_loader import Service
+from config import Service
 from log_formatter.response import Response
 
 
@@ -18,9 +18,7 @@ class LogFormatter:
         results = regex.findall(template)
         for group in results:
             replace_to = (
-                str(getattr(response, group, None))[: 30]
-                if group in trim_attrs
-                else str(getattr(response, group, None))
+                str(getattr(response, group, None))[:30] if group in trim_attrs else str(getattr(response, group, None))
             )
             log = log.replace("{" + group + "}", replace_to)
 

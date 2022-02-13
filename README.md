@@ -36,9 +36,6 @@ interval - interval between the pings, in seconds
 
 after_panic_delay - delay after populating panic log, in seconds
 
-after_exception_delay - delay after getting the exception during sending request
-(exception during request often means that configured service url is being unreachable)
-
 success_log - template of the successful ping log, you can read about possible log kwargs in section below, leave blank to not
 populate success logs
 

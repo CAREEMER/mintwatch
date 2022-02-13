@@ -1,13 +1,13 @@
-import pydantic
+from pydantic import BaseModel, validator
 
 
-class Response(pydantic.BaseModel):
-    ok: bool
-    status_code: int
-    body: str
-    time: float
+class Response(BaseModel):
+    ok: bool = False
+    status_code: int = 666
+    body: str = "Inaccessible url, this request raised an exception!"
+    time: float = 0.0
 
-    @pydantic.validator("time")
+    @validator("time")
     def trim_time(cls, v):
         trim_digits_to = 3
 

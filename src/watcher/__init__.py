@@ -1,3 +1,4 @@
-from watcher.watcher import watcher_task
+from watcher.utils import try_ping
+from watcher.watcher import WatcherTask
 
-__all__ = ["watcher_task"]
+__all__ = ["WatcherTask", "try_ping"]

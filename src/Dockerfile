@@ -18,4 +18,5 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 
 COPY . .
 
-ENTRYPOINT ["python main.py"]
+CMD ["main.py"]
+ENTRYPOINT ["python"]

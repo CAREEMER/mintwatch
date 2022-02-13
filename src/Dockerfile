@@ -9,8 +9,8 @@ RUN apt update \
   && apt install -y netcat gettext libgettextpo-dev \
   && pip install --upgrade pip \
   && pip install poetry==1.1.6
-RUN ls
-COPY pyproject.toml poetry.lock ./
+
+COPY src/pyproject.toml src/poetry.lock ./
 
 RUN poetry config virtualenvs.create false
 

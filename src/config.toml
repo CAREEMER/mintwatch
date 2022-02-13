@@ -4,7 +4,7 @@ chat_id="PLACE_CHAT_ID_HERE"
 
 [yandex]
 url="https://yandex.ru"
-panic=5
+panic=6
 interval=3
 
 [google]

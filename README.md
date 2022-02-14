@@ -4,6 +4,12 @@ Easy-to-setup bot, ChatOps project for handling telegram chat logging over docke
 
 Example usage at /example directory.
 
+## Features:
+- ~~Configurable logging
+- Command handling
+- Configurable commands
+- Database client to collect services acessibility data
+
 ## Running from source:
 ```shell
 cd src

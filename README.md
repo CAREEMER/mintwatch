@@ -30,43 +30,40 @@ docker run mintwatch
 - See /example directory
 - Include bot build in services, be sure to write proper config (e.g. write url as the name of the service in docker-compose)
 
-## Base config params:
-```shell
-token - telegram bot token
 
-chat_id - id of the chat to populate logs
+## Base config params:
+`token` - telegram bot token
+
+`chat_id` - id of the chat to populate logs
 (bot needs to be in the chat if that is the group or you need tomessage him first if you want it to populate logs in private messages)
 
-bot_success_logs - 0 or 1 - determines if success logs being populated in the telegram
+`bot_success_logs` - 0 or 1 - determines if success logs being populated in the telegram
 (be aware of amount of useless logs in telegram chat)
-```
+
 
 ## Service config params:
-```shell
-url - http url to be pinged
+`url` - http url to be pinged
 
-panic - how many times ping must be failed before panic log to be populated
+`panic` - how many times ping must be failed before panic log to be populated
 
-interval - interval between the pings, in seconds
+`interval` - interval between the pings, in seconds
 
-after_panic_delay - delay after populating panic log, in seconds
+`after_panic_delay` - delay after populating panic log, in seconds
 
-success_log - template of the successful ping log, you can read about possible log kwargs in section below
+`success_log` - template of the successful ping log, you can read about possible log kwargs in section below
 
-failure_log - same thing, but for failed pings
-```
+`failure_log` - same thing, but for failed pings
+
 
 ### Possible log kwargs:
-```shell
-name - name of the service
+`name` - name of the service
 
-url - url of the service
+`url` - url of the service
 
-ok - if response is ok
+`ok` - if response is ok
 
-status_code - status code of the get response
+`status_code` - status code of the get response
 
-body - body of the response (usage is not recommended due to lack of readability of the response body)
+`body` - body of the response (usage is not recommended due to lack of readability of the response body)
 
-time - time elapsed during the request
-```
+`time` - time elapsed during the request

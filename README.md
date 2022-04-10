@@ -38,7 +38,7 @@ docker run mintwatch
 (bot needs to be in the chat if that is the group or you need tomessage him first if you want it to populate logs in private messages)
 
 `bot_success_logs` - 0 or 1 - determines if success logs being populated in the telegram
-(be aware of amount of useless logs in telegram chat)
+(be aware of amount of useless logs in telegram chat).
 
 
 ## Service config params:
